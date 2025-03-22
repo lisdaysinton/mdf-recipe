@@ -1,11 +1,10 @@
 name: Midnight Demon Framework
-author: lisdaysinton
 version: 1.0.0
+author: lisdaysinton
 
 description: >
-  This recipe installs the core components of the Midnight Demon Framework (MDF),
-  including inventory, admin tools, shared libraries, and core logic. It ensures
-  your MySQL database is initialized and your server.cfg is set up correctly.
+  This recipe installs the Midnight Demon Framework (MDF), including core, shared library,
+  inventory, admin tools, and SQL initialization. It is compatible with txAdmin deployment.
 
 tasks:
   - action: download_github
@@ -42,6 +41,9 @@ tasks:
     data: |
       # MDF Server Config
       setr MDF_VERSION 1.0.0
-      set mysql_connection_string "mysql://root@localhost/mdf_framework"
+      set mysql_connection_string "{{dbConnectionString}}"
+      {{serverEndpoints}}
+      {{svLicense}}
+      {{maxClients}}
+      {{addPrincipalsMaster}}
       ensure [mdf]
-
