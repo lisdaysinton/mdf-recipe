@@ -2,8 +2,7 @@ name: MDF Framework
 author: lisdaysinton
 
 description: >
-  This recipe sets up the Midnight Demon Framework (MDF) for FiveM.
-  It includes the core, library, inventory, and admin resources, and sets up the SQL and config.
+  Sets up the Midnight Demon Framework (MDF) for FiveM with all base modules.
 
 tasks:
   - action: download_github
