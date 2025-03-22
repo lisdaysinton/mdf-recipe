@@ -1,0 +1,52 @@
+name: MDF Framework
+author: MidnightDemon
+
+description: >
+  This recipe sets up the Midnight Demon Framework (MDF) for FiveM. 
+  It downloads core resources, runs SQL, and ensures the server config is updated.
+
+tasks:
+  - action: download_github
+    src: MidnightDemonRP/mdf-core
+    ref: main
+    dest: ./resources/[mdf]/mdf-core
+
+  - action: download_github
+    src: MidnightDemonRP/mdf-lib
+    ref: main
+    dest: ./resources/[mdf]/mdf-lib
+
+  - action: download_github
+    src: MidnightDemonRP/mdf-inv
+    ref: main
+    dest: ./resources/[mdf]/mdf-inv
+
+  - action: download_github
+    src: MidnightDemonRP/mdf-admin
+    ref: main
+    dest: ./resources/[mdf]/mdf-admin
+
+  - action: print
+    text: "✅ MDF resources downloaded successfully."
+
+  - action: sql
+    file: setup.sql
+
+  - action: print
+    text: "✅ Database initialized."
+
+  - action: ensure
+    resources:
+      - [mdf]/mdf-core
+      - [mdf]/mdf-lib
+      - [mdf]/mdf-inv
+      - [mdf]/mdf-admin
+
+  - action: cfg
+    data: |
+      # MDF Configuration
+      setr MDF_VERSION 1.0.0
+      ensure [mdf]
+
+  - action: print
+    text: "✅ MDF Framework installation complete!"
